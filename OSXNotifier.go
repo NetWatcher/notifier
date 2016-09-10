@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"os/exec"
 
-	"github.com/getlantern/notifier/osx"
+	"github.com/netwatcher/notifier/osx"
 )
 
 func newNotifier() (Notifier, error) {
