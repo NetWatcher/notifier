@@ -31,7 +31,7 @@ type windowsNotifier struct {
 
 // Notify sends a notification to the user.
 func (n *windowsNotifier) Notify(msg *Notification) error {
-	cmd := exec.Command(n.path, "/m", msg.Message, "/p", msg.Title)
+	cmd := exec.Command(n.path, "/m", msg.Message, "/p", msg.Title, "/w")
 	result, err := cmd.CombinedOutput()
 	if err != nil {
 		// This will happen all the time with notifu, as it uses exit statuses to
