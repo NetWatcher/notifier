@@ -12,10 +12,12 @@ import (
 	"github.com/skratchdot/open-golang/open"
 )
 
-func newNotifier() (Notifier, error) {
-	dir, err := ioutil.TempDir("", "terminal-notifier")
-	if err != nil {
-		return nil, err
+func newNotifier(dir string) (Notifier, error) {
+	if dir == "" {
+		dir, err := ioutil.TempDir("", "terminal-notifier")
+		if err != nil {
+			return nil, err
+		}
 	}
 	if err := osx.RestoreAssets(dir, "terminal-notifier.app"); err != nil {
 		return nil, err
