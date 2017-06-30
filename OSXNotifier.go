@@ -13,8 +13,9 @@ import (
 )
 
 func newNotifier(dir string) (Notifier, error) {
+	var err error
 	if dir == "" {
-		dir, err := ioutil.TempDir("", "terminal-notifier")
+		dir, err = ioutil.TempDir("", "terminal-notifier")
 		if err != nil {
 			return nil, err
 		}
