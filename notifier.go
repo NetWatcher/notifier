@@ -51,8 +51,8 @@ func (n *emptyNotifier) Notify(msg *Notification) error {
 }
 
 // NewNotifications creates a new Notifier that can notify the user about stuff.
-func NewNotifications() Notifier {
-	n, err := newNotifier()
+func NewNotifications(dir string) Notifier {
+	n, err := newNotifier(dir)
 	if err != nil {
 		log.Errorf("Could not create notifier? %v", err)
 		n = &emptyNotifier{}
