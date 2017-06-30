@@ -13,16 +13,17 @@ import (
 	"github.com/skratchdot/open-golang/open"
 )
 
-func newNotifier() (Notifier, error) {
-	if dir, err := ioutil.TempDir("", "notifu-notifier"); err != nil {
-		return nil, err
-	} else {
-		if err := win.RestoreAssets(dir, "notifu.exe"); err != nil {
+func newNotifier(dir string) (Notifier, error) {
+	if dir == "" {
+		if dir, err := ioutil.TempDir("", "notifu-notifier"); err != nil {
 			return nil, err
 		}
-		fullPath := dir + "/notifu.exe"
-		return &windowsNotifier{path: fullPath}, nil
 	}
+	if err := win.RestoreAssets(dir, "notifu.exe"); err != nil {
+		return nil, err
+	}
+	fullPath := dir + "/notifu.exe"
+	return &windowsNotifier{path: fullPath}, nil
 }
 
 type windowsNotifier struct {
