@@ -2,6 +2,6 @@
 
 package notify
 
-func newNotifier() (Notifier, error) {
+func newNotifier(dir string) (Notifier, error) {
 	return &emptyNotifier{}, nil
 }
